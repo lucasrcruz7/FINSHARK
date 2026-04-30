@@ -8,7 +8,7 @@ interface SearchResponse {
 export const searchCompanies = async (query: string): Promise<SearchResponse | string> => {
     try {
         const response = await axios.get<SearchResponse>(
-            `https://financialmodelingprep.com/stable/search-symbol?query=AAPL&apikey=${process.env.REACT_APP_API_KEY}`
+            `https://finnhub.io/api/v1/search?q=apple&token=d7pmgphr01qosaap5dugd7pmgphr01qosaap5dv0`
         );
         return response.data;
     } catch (error) {
