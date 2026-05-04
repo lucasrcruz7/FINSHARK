@@ -5,6 +5,7 @@ import { getCompanyProfile } from '../../api'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import CompanyDashboard from '../../Components/CompanyDashboard/CompanyDashboard'
 import Tile from '../../Components/Tile/Tile'
+import { t } from 'react-router/dist/development/index-react-server-client-BBd0A0TL'
 
 type Props = {}
 
@@ -24,7 +25,7 @@ const CompanyPage = (props: Props) => {
       {company ? (
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
           <Sidebar />
-          <CompanyDashboard>
+          <CompanyDashboard ticker={ticker!}>
             <Tile title="Company Name" subTitle={company.companyName}></Tile> 
           </CompanyDashboard> 
         </div>
