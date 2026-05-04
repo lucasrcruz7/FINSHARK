@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company"
+import { CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company"
 
 export const searchCompanies = async (query: string): Promise<{ data: CompanySearch[] } | string> => {
     try {
@@ -29,9 +29,20 @@ export const getCompanyProfile = async (query: string) => {
     }
 }
 
-export const getKeyMetrics= async (query: string) => {
+export const getKeyMetrics = async (query: string) => {
     try {
         const data = await axios.get<CompanyKeyMetrics[]>(
+            `https://financialmodelingprep.com/api/v3/key-metrics-ttm/${query}?limit=40&apikey=gys6N7Z1DXxMpJeevkWUZyzjy3I20WCa`
+        )
+        return data
+    } catch (error: any) {
+        console.log("error message from API: ", error.message)
+    }
+}
+
+export const getIncomeStatement= async (query: string) => {
+    try {
+        const data = await axios.get<CompanyIncomeStatement[]>(
             `https://financialmodelingprep.com/api/v3/key-metrics-ttm/AAPL?limit=40&apikey=gys6N7Z1DXxMpJeevkWUZyzjy3I20WCa`
         )
         return data
