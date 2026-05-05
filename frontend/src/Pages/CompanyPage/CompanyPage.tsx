@@ -5,7 +5,9 @@ import { getCompanyProfile } from '../../api'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import CompanyDashboard from '../../Components/CompanyDashboard/CompanyDashboard'
 import Tile from '../../Components/Tile/Tile'
-import { t } from 'react-router/dist/development/index-react-server-client-BBd0A0TL'
+import Spinner from '../../Components/Spinner/Spinner'
+import CompFinder from '../../Components/CompFinder/CompFinder'
+import TenKFinder from '../../Components/TenKFinder/TenKFinder'
 
 type Props = {}
 
@@ -27,10 +29,18 @@ const CompanyPage = (props: Props) => {
           <Sidebar />
           <CompanyDashboard ticker={ticker!}>
             <Tile title="Company Name" subTitle={company.companyName}></Tile> 
+            <Tile title="Price" subTitle={company.price.toString()}></Tile> 
+            <Tile title="Sector" subTitle={company.sector}></Tile> 
+            <Tile title="DCF" subTitle={company.dcf.toString()}></Tile> 
+            <CompFinder ticker={company.symbol} />
+            <TenKFinder ticker={company.symbol} />
+            <p className="bg-white shadow rounded text-medium text-gray-900 p-3 mt-1 m-4">
+              {company.description}
+            </p>
           </CompanyDashboard> 
         </div>
       ) : (
-        <div>Company not found!</div>
+        <Spinner />
       )}
     </div>
   )
