@@ -5,8 +5,15 @@ using System.Threading.Tasks;
 
 namespace api.Data
 {
-    public class ApplicationDBContext
+    public class ApplicationDBContext : DbContext
     {
-        
+        public ApplicationDBContext(DbContextOptions dbContextOptions) 
+        : base(dbContextOptions)
+        {
+
+        } 
+
+        public DbSet<Stock> { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
