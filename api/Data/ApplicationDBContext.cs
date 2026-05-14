@@ -9,6 +9,7 @@ namespace api.Data
 {
     public class ApplicationDBContext : DbContext
     {
+<<<<<<< HEAD
         public ApplicationDBContext(DbContextOptions dbContextOptions)
         : base(dbContextOptions)
         {
@@ -25,5 +26,15 @@ namespace api.Data
             modelBuilder.Entity<Portfolio>()
                 .HasKey(p => new { p.AppUserId, p.StockId });
         }
+=======
+        public ApplicationDBContext(DbContextOptions dbContextOptions) 
+        : base(dbContextOptions)
+        {
+
+        } 
+
+        public DbSet<Stock> { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+>>>>>>> 2b0fa515c9dce36013358d3c42a4bfe4994ca0d9
     }
 }
