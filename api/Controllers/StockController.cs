@@ -36,8 +36,8 @@ namespace api.Controllers
             }
 
             var stocks =  await _stockRepo.GetAllAsync(query);
-            var stockDto = stocks.Select(s => s.ToStockDto());
-            return Ok(stocks);
+            var stockDto = stocks.Select(s => s.ToStockDto()).ToList();
+            return Ok(stockDto);
         }
 
         [HttpGet("{id:int}")]
@@ -65,7 +65,7 @@ namespace api.Controllers
             }
 
             var stockModel = stockDto.ToStockFromCreateDTO();
-            await _context.Stocks.AddAsync(stockModel);
+            await _stockRepo.CreateAsync(stockModel);
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
         }
 
@@ -84,7 +84,7 @@ namespace api.Controllers
             {
                 return NotFound();
             }
-                        _context.Stocks.Remove(stockModel);
+
             return NoContent();
         }
 
