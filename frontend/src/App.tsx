@@ -1,13 +1,16 @@
 import { Outlet } from "react-router";
 import Navbar from "./Components/Navbar/Navbar";
-
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { UserProvider } from "./Context/userAuth";
 
 function App() {
   return (
-    <div>
+    <UserProvider>
       <Navbar />
       <Outlet />
-    </div>
+      <ToastContainer />
+    </UserProvider>
   );
 }
 
